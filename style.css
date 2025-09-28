@@ -1,0 +1,494 @@
+
+        /* Variables CSS */
+        :root {
+            --background: #fefefe;
+            --foreground: #1a1a1a;
+            --card: #ffffff;
+            --card-foreground: #1a1a1a;
+            --muted-foreground: #6b7280;
+            --accent: #9c27b0;
+            --accent-foreground: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 64px 24px;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 3.75rem;
+            }
+        }
+
+        .hero-title .accent-text {
+            color: var(--accent);
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .gradient-text {
+            background: linear-gradient(-45deg, #9c27b0, #e91e63, #9c27b0, #673ab7);
+            background-size: 400% 400%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-text 4s ease-in-out infinite;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            line-height: 1.6;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fade-in-up 0.8s ease-out 0.2s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fade-in-up 0.8s ease-out 0.4s forwards;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+            transform: translateY(-2px);
+        }
+
+        /* Chart Component */
+        .chart-container {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slide-in-right 0.8s ease-out 0.6s forwards;
+            transition: all 0.3s ease;
+        }
+
+        .chart-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 32px 64px rgba(156, 39, 176, 0.2);
+        }
+
+        .chart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--card-foreground);
+        }
+
+        .chart-badge {
+            background-color: rgba(156, 39, 176, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            animation: bounce-subtle 2s ease-in-out infinite;
+        }
+
+        .chart-area {
+            position: relative;
+            height: 192px;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            gap: 32px;
+            background: linear-gradient(to top, rgba(156, 39, 176, 0.05), transparent);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .chart-bar-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chart-value {
+            position: absolute;
+            top: -32px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(156, 39, 176, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: chart-value-appear 0.8s ease-out forwards;
+        }
+
+        .chart-value-1 { animation-delay: 1.5s; }
+        .chart-value-2 { animation-delay: 1.8s; }
+        .chart-value-3 { animation-delay: 2.1s; }
+        .chart-value-4 { animation-delay: 2.4s; }
+
+        .chart-bar {
+            width: 48px;
+            background: linear-gradient(to top, var(--accent), rgba(156, 39, 176, 0.9), rgba(156, 39, 176, 0.7));
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+            height: 0;
+            animation: chart-bar-grow 1.5s ease-out forwards;
+            transition: all 0.3s ease;
+        }
+
+        .chart-bar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.5);
+        }
+
+        .chart-bar-60 { animation-delay: 0.2s; --final-height: 96px; }
+        .chart-bar-80 { animation-delay: 0.5s; --final-height: 128px; }
+        .chart-bar-100 { animation-delay: 0.8s; --final-height: 160px; }
+        .chart-bar-75 { animation-delay: 1.1s; --final-height: 120px; }
+
+        .chart-shimmer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%) skewX(-12deg);
+            opacity: 0;
+            animation: chart-shimmer-slide 2s ease-in-out infinite;
+        }
+
+        .chart-shimmer-1 { animation-delay: 1.2s; }
+        .chart-shimmer-2 { animation-delay: 1.5s; }
+        .chart-shimmer-3 { animation-delay: 1.8s; }
+        .chart-shimmer-4 { animation-delay: 2.1s; }
+
+        .chart-base-line {
+            margin-top: 8px;
+            width: 48px;
+            height: 4px;
+            background-color: rgba(156, 39, 176, 0.3);
+            border-radius: 20px;
+        }
+
+        .chart-footer {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .chart-main-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            animation: chart-main-value-count 2s ease-out forwards;
+        }
+
+        .chart-description {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            margin-top: 4px;
+            animation: fade-in-up 0.8s ease-out 2.5s forwards;
+            opacity: 0;
+        }
+
+        /* Geometric Shapes Background */
+        .geometric-shapes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .triangle {
+            position: absolute;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: float-gentle 8s ease-in-out infinite;
+        }
+
+        .triangle-1 {
+            top: 80px;
+            left: 40px;
+            width: 64px;
+            height: 64px;
+            background-color: rgba(156, 39, 176, 0.1);
+        }
+
+        .triangle-2 {
+            top: 160px;
+            right: 80px;
+            width: 48px;
+            height: 48px;
+            background-color: rgba(156, 39, 176, 0.05);
+            animation-delay: 2s;
+            transform: rotate(45deg);
+        }
+
+        .triangle-3 {
+            bottom: 160px;
+            left: 80px;
+            width: 80px;
+            height: 80px;
+            background-color: rgba(156, 39, 176, 0.08);
+            animation-delay: 4s;
+            transform: rotate(180deg);
+        }
+
+        .triangle-4 {
+            top: 240px;
+            right: 40px;
+            width: 56px;
+            height: 56px;
+            background-color: rgba(156, 39, 176, 0.06);
+            animation-delay: 1s;
+            transform: rotate(90deg);
+        }
+
+        .triangle-5 {
+            bottom: 240px;
+            right: 160px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(156, 39, 176, 0.04);
+            animation-delay: 3s;
+            transform: rotate(270deg);
+        }
+
+        .grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(156, 39, 176, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(156, 39, 176, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        /* Animaciones */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-in-right {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes chart-value-appear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes chart-bar-grow {
+            from {
+                height: 0;
+                box-shadow: none;
+            }
+            to {
+                height: var(--final-height);
+                box-shadow: 0 0 20px rgba(156, 39, 176, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @keyframes chart-shimmer-slide {
+            0% {
+                transform: translateX(-100%) skewX(-12deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(200%) skewX(-12deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes chart-main-value-count {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float-gentle {
+            0%, 100% {
+                transform: translateY(0px);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateY(-10px);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes bounce-subtle {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 10px rgba(156, 39, 176, 0.3);
+            }
+            50% {
+                opacity: 0.8;
+                text-shadow: 0 0 20px rgba(156, 39, 176, 0.6), 0 0 30px rgba(156, 39, 176, 0.4);
+            }
+        }
+
+        @keyframes gradient-text {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
